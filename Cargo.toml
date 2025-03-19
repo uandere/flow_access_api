@@ -1,6 +1,6 @@
 [package]
 name = "flow_access_api"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2024"
 build = "build.rs"
 authors = ["Demchuk Nazar <nazar.demchvk@gmail.com>"]

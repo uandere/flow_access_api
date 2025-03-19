@@ -66,7 +66,7 @@ async fn main() -> flow_access_api::Result<()> {
     // Sign the transaction using library functionality
     sign_transaction(
         &mut tx,
-        &account_address,
+        account_address_hex,
         0,
         &private_key,
     )?;

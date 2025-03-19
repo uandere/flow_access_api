@@ -95,12 +95,14 @@ pub fn hash_transaction(tx: &Transaction) -> Result<Vec<u8>> {
 /// Sign a transaction with the given secp256k1 private key
 pub fn sign_transaction(
     tx: &mut Transaction,
-    signer_address: &[u8],
+    signer_address: &str,
     key_index: u32,
     private_key: &SecretKey,
 ) -> crate::client::Result<()> {
     // Calculate the transaction hash
     let hash = hash_transaction(tx)?;
+
+    let signer_address = hex_to_bytes(signer_address)?;
 
     // Create a Secp256k1 context
     let secp = Secp256k1::new();
@@ -122,7 +124,7 @@ pub fn sign_transaction(
 
     // Create a signature envelope
     let envelope_signature = transaction::Signature {
-        address: signer_address.to_vec(),
+        address: signer_address,
         key_id: key_index,
         signature: signature_bytes,
     };
