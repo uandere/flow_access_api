@@ -1,6 +1,6 @@
 [package]
 name = "flow_access_api"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 build = "build.rs"
 authors = ["Demchuk Nazar <nazar.demchvk@gmail.com>"]
@@ -22,6 +22,7 @@ serde_json = "1.0.135"
 serde = { version = "1.0.217", features = ["derive"] }
 serde_cadence = "0.1.13"
 derive_more = { version = "2.0.1", features = ["full"] }
+anyhow = "1.0.97"
 
 [build-dependencies]
 tonic-build = "0.12.3"

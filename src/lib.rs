@@ -1,3 +1,4 @@
+use anyhow::anyhow;
 use derive_more::From;
 
 pub mod client;
@@ -37,3 +38,9 @@ pub enum Error {
 }
 
 pub type Result<T> = std::result::Result<T, client::Error>;
+
+impl From<Error> for anyhow::Error {
+    fn from(value: Error) -> Self {
+        anyhow!(format!("{:?}", value))
+    }
+}
