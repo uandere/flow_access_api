@@ -18,6 +18,7 @@ use secp256k1::{Message, Secp256k1, SecretKey};
 use serde_cadence::{to_cadence_value, CadenceValue, ToCadenceValue};
 use sha3::{Digest, Sha3_256};
 use std::str::FromStr;
+use std::sync::Arc;
 use std::time::Duration;
 use tokio::select;
 use tonic::transport::{Channel, Uri};
@@ -56,8 +57,17 @@ pub enum Error {
 
 pub type Result<T> = std::result::Result<T, Error>;
 
+#[derive(Clone)]
 pub struct FlowRcpClient {
     access_client: AccessApiClient<Channel>,
+}
+
+unsafe impl Send for FlowRcpClient {
+    
+}
+
+unsafe impl Sync for FlowRcpClient {
+
 }
 
 
@@ -180,7 +190,7 @@ impl FlowRcpClient {
         // Return the hash
         Ok((tx, hasher.finalize().to_vec()))
     }
-    
+
     /// Send a transaction and subscribe to status updates.
     pub async fn send_transaction_and_subscribe(
         &mut self,
