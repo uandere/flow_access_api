@@ -3,6 +3,10 @@ name = "flow_access_api"
 version = "0.1.0"
 edition = "2024"
 build = "build.rs"
+authors = ["Demchuk Nazar <nazar.demchvk@gmail.com>"]
+repository = "https://github.com/uandere/flow_access_api"
+description = "The Rust implementation of the Flow Access API through gRPC client."
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 futures = "0.3.31"
