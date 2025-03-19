@@ -50,12 +50,12 @@ async fn main() -> flow_access_api::Result<()> {
 
     // Create parameters
     let message = "Hello, Flow!";
-    let amount = 100.5;
+    let amount = 100_f64;
     
     // Create and sign the transaction using the library
     let (mut tx, tx_hash) = client.create_transaction_with_params(
         script_with_params,
-        &[&message, &CadenceValue::UFix64 { value: amount.to_string() }],
+        &[&message, &CadenceValue::UFix64 { value: format!("{:.2}", amount) }],
         account_address_hex,
         100 // gas limit
     ).await?;

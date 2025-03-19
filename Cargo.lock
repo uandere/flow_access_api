@@ -1069,11 +1069,12 @@ dependencies = [
 
 [[package]]
 name = "serde_cadence"
-version = "0.1.10"
+version = "0.1.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d21660e1af931cdf78b9e435ca4390e5916cac07adb09d549fe6ad490d0c6b79"
+checksum = "d8421a119543c40187a385635bc7d3124a52c9648b48d5343cc5b1c79f04a778"
 dependencies = [
  "cadence_json_derive",
+ "derive_more",
  "serde",
  "serde_json",
 ]
