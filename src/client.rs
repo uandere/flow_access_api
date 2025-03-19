@@ -20,6 +20,7 @@ use sha3::{Digest, Sha3_256};
 use std::str::FromStr;
 use std::sync::Arc;
 use std::time::Duration;
+use anyhow::anyhow;
 use tokio::select;
 use tonic::transport::{Channel, Uri};
 use tonic::Request;
@@ -56,6 +57,13 @@ pub enum Error {
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
+
+impl From<Error> for anyhow::Error {
+    fn from(value: Error) -> Self {
+        anyhow!(format!("{:?}", value))
+    }
+}
+
 
 #[derive(Clone)]
 pub struct FlowRcpClient {

@@ -1,3 +1,4 @@
+use anyhow::anyhow;
 use crate::flow::entities::{transaction, Transaction};
 use crate::keys::hex_to_bytes;
 use derive_more::From;
@@ -13,6 +14,13 @@ pub enum Error {
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
+
+impl From<Error> for anyhow::Error {
+    fn from(value: Error) -> Self {
+        anyhow!(format!("{:?}", value))
+    }
+}
+
 
 pub(crate) const TRANSACTION_DOMAIN_TAG: &str =
     "464c4f572d56302e302d7472616e73616374696f6e0000000000000000000000";

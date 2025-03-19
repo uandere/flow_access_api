@@ -1,3 +1,4 @@
+use anyhow::anyhow;
 use derive_more::From;
 use secp256k1::SecretKey;
 
@@ -11,6 +12,13 @@ pub enum Error {
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
+
+impl From<Error> for anyhow::Error {
+    fn from(value: Error) -> Self {
+        anyhow!(format!("{:?}", value))
+    }
+}
+
 
 /// Convert hex string to byte vector
 pub fn hex_to_bytes(hex_str: &str) -> Result<Vec<u8>> {
