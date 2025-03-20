@@ -1,6 +1,6 @@
 [package]
 name = "flow_access_api"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2024"
 build = "build.rs"
 authors = ["Demchuk Nazar <nazar.demchvk@gmail.com>"]
@@ -11,7 +11,7 @@ license = "MIT OR Apache-2.0"
 [dependencies]
 futures = "0.3.31"
 hex = "0.4.3"
-tokio = { version = "1.43.0", features = ["full"] }
+tokio = { version = "1.43.0", features = ["full", "rt-multi-thread"] }
 tonic = "0.12.3"
 prost = "0.13.4"
 prost-types = "0.13.4"

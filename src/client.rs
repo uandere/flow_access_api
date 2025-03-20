@@ -97,7 +97,7 @@ impl FlowRcpClient {
     pub async fn create_transaction_with_params(
         &mut self,
         script: &str,
-        params: Vec<&dyn ToCadenceValue>,
+        params: &[&dyn ToCadenceValue],
         sender_address_hex: &str,
         gas_limit: u64,
     ) -> Result<(Transaction, Vec<u8>)> {
@@ -117,7 +117,7 @@ impl FlowRcpClient {
             script: script.as_bytes().to_vec(),
             arguments: vec![], // We'll populate this with parameters
             reference_block_id,
-            gas_limit,
+            gas_limit: gas_limit,
             proposal_key: Some(transaction::ProposalKey {
                 address: account_address.clone(),
                 key_id: key_index,
@@ -129,7 +129,7 @@ impl FlowRcpClient {
             envelope_signatures: vec![],
         };
 
-        for param in params {
+        for &param in params {
             let cadence_message = to_cadence_value(param)?;
             // Flow API requires JSON serialization for transaction arguments
             let encoded_message = serde_json::to_string(&cadence_message)?.into_bytes();

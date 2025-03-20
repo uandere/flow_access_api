@@ -52,7 +52,7 @@ async fn main() -> flow_access_api::Result<()> {
     // Create and sign the transaction using the library
     let (mut tx, tx_hash) = client.create_transaction_with_params(
         script_with_params,
-        vec![&message, &CadenceValue::UFix64 { value: format!("{:.2}", amount) }],
+        &[&message, &CadenceValue::UFix64 { value: format!("{:.2}", amount) }],
         account_address_hex,
         100 // gas limit
     ).await?;
