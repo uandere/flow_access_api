@@ -26,9 +26,6 @@ async fn main() -> flow_access_api::Result<()> {
     let account_address_hex = "788db9ec197a75de"; // Without 0x prefix
     let private_key_hex = "3b75e9e624b7aec74181c37270296fe4718af0f674012758df99e59ab0f85b50"; // Your private key
 
-    // Convert address from hex
-    let account_address = hex_to_bytes(account_address_hex)?;
-
     // Parse the private key (as secp256k1 key)
     let private_key = parse_private_key(private_key_hex)?;
 
@@ -51,11 +48,11 @@ async fn main() -> flow_access_api::Result<()> {
     // Create parameters
     let message = "Hello, Flow!";
     let amount = 100_f64;
-    
+
     // Create and sign the transaction using the library
     let (mut tx, tx_hash) = client.create_transaction_with_params(
         script_with_params,
-        &[&message, &CadenceValue::UFix64 { value: format!("{:.2}", amount) }],
+        vec![&message, &CadenceValue::UFix64 { value: format!("{:.2}", amount) }],
         account_address_hex,
         100 // gas limit
     ).await?;
