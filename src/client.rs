@@ -117,7 +117,7 @@ impl FlowRcpClient {
             script: script.as_bytes().to_vec(),
             arguments: vec![], // We'll populate this with parameters
             reference_block_id,
-            gas_limit: gas_limit,
+            gas_limit,
             proposal_key: Some(transaction::ProposalKey {
                 address: account_address.clone(),
                 key_id: key_index,
